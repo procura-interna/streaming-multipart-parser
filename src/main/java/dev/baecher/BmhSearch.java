@@ -26,7 +26,7 @@ public final class BmhSearch {
         return skip;
       }
 
-      skip = skip + bmhPattern[reference[skip + toSearch.length - 1]];
+      skip = skip + bmhPattern[reference[skip + toSearch.length - 1]  & 0xFF];
     }
 
     return -1;
@@ -55,7 +55,7 @@ public final class BmhSearch {
     Arrays.fill(bmhPattern, toSearch.length);
 
     for (int i = 0; i < toSearch.length - 1; i++) {
-      bmhPattern[toSearch[i]] = toSearch.length - 1 - i;
+      bmhPattern[toSearch[i] & 0xFF] = toSearch.length - 1 - i;
     }
 
     return bmhPattern;
