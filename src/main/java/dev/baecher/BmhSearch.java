@@ -20,8 +20,11 @@ public final class BmhSearch {
 
     final int[] bmhPattern = preprocessBmhPattern(toSearch);
 
+    final int referenceLength = referenceEnd - referenceStart;
+
+
     int skip = referenceStart;
-    while (reference.length - skip >= toSearch.length) {
+    while (referenceLength - skip >= toSearch.length) {
       if (bmhSame(reference, skip, referenceEnd, toSearch)) {
         return skip;
       }
