@@ -38,17 +38,17 @@ public final class BmhSearch {
   private static boolean bmhSame(final byte[] reference, final int referenceStart,
       final int referenceEnd, final byte[] toSearch) {
 
-    for (int r = referenceStart + toSearch.length - 1, s = toSearch.length - 1; s < toSearch.length; r--, s--) {
-      if (reference[r] != toSearch[s]) {
-        break;
-      }
+    if (referenceStart + toSearch.length > referenceEnd) {
+      return false;
+    }
 
-      if (s == 1) {
-        return true;
+    for (int i = toSearch.length - 1; i >= 0; i--) {
+      if (reference[referenceStart + i] != toSearch[i]) {
+        return false;
       }
     }
 
-    return false;
+    return true;
   }
 
   private static int[] preprocessBmhPattern(final byte[] toSearch) {
