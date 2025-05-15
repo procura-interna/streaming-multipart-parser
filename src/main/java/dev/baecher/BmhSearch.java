@@ -10,7 +10,7 @@ public final class BmhSearch {
 
   /**
    * Searches for the first occurrence of a byte pattern in a byte array. Uses the
-   * Boyer–Moore–Horspool algorithm for linear time complexity
+   * Boyer–Moore–Horspool algorithm for fast average-case byte pattern searching.
    */
   public static int search(final byte[] reference, final int referenceStart, final int referenceEnd,
       final byte[] toSearch) {
