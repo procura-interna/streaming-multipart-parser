@@ -1,5 +1,6 @@
 package dev.baecher.multipart;
 
+import dev.baecher.BmhSearch;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -55,15 +56,16 @@ public class Buffer {
     }
 
     public int find(byte[] b) {
-        // TODO might need a better implementation (BM etc.)
-        int lastOffset = offset + length - b.length;
-        for (int i = offset; i <= lastOffset; i++) {
-            if (Arrays.equals(b, 0, b.length, data, i, i + b.length)) {
-                return i - offset;
-            }
+        final int indexOf = indexOf(data, offset, data.length, b);
+        if (indexOf == -1) {
+            return -1;
         }
 
-        return -1;
+        return indexOf - offset;
+    }
+
+    private static int indexOf(final byte[] base, final int startIndex, final int endIndex, final byte[] pattern) {
+        return BmhSearch.search(base, startIndex, endIndex, pattern);
     }
 
     public void skip(int len) throws IOException {
